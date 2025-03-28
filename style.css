@@ -1,0 +1,171 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+
+}
+
+body{
+    background-image: linear-gradient(to right, #050611 0%, #040c24 50%, #060c50 100%);
+    color: antiquewhite;
+}
+
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.justified{
+    text-align: justify;
+    hyphens: auto;
+}
+
+.center-navlinks{
+    margin-left: 180px;
+}
+
+.hero{
+    min-height: 600px;
+    margin-top: 100px;
+}
+
+/* about page  */
+
+.services{
+   max-height: 400px;
+}
+
+
+.projects{
+    /* background-image: linear-gradient(to right, #132e78 10%, #030733 100%); */
+
+}
+
+
+.contactinfo{
+    border: 2px dotted #ffea00;
+    padding: 12px 30px;
+    border-radius: 30px;
+}
+
+
+.submitbtn{
+    border: 2px dotted #ffea00;
+    border-radius: 30px;
+
+}
+
+
+.formsection{
+    background: #000000;
+}
+
+.gradient-text{
+    background: linear-gradient(to bottom, rgb(208, 210, 215), rgb(29, 24, 127));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 400;
+}
+
+
+
+
+.get-int{
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(62, 48, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    
+}
+
+.contact-box{
+    background: #ffea00;
+    color: #050611;
+
+}
+
+.send-message{
+    border: 2px dotted rgb(14, 130, 197);
+    border-radius: 100px;
+    padding: 10px 20px;
+    width: 300px;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, rgb(12, 11, 11), rgb(24, 13, 181));
+
+}
+
+.send-message:hover{
+    background: linear-gradient(to bottom, rgb(35, 31, 31), rgb(29, 13, 255));
+    color: white;
+}
+
+.yellow-text{
+    color: #ffea00;
+
+}
+
+
+
+
+
+
+
+
+.timeline {
+  border-left: 1px solid hsl(0, 0%, 90%);
+  position: relative;
+  list-style: none;
+}
+
+.timeline .timeline-item {
+  position: relative;
+}
+
+.timeline .timeline-item:after {
+  position: absolute;
+  display: block;
+  top: 0;
+}
+
+.timeline .timeline-item:after {
+  background-color: hsl(54, 100%, 50%);
+  left: -38px;
+  border-radius: 50%;
+  height: 11px;
+  width: 11px;
+  content: "";
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {...}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {...}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {...}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+    .center-navlinks{
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+
+    .hero{
+        margin-top: 50px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {...}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {...}
+
+
+
