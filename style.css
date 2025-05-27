@@ -151,6 +151,10 @@ a{
     .hero{
         margin-top: 20px;
     }
+
+    .no-justify{
+        text-align: right;
+    }
 }
 
 
