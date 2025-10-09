@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations for hero image */
+@keyframes float {
+  0%, 100% {
+    transform: rotate(6deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(6deg) translateY(-10px);
+  }
+}
+
+/* DM Sans font is now loaded via Next.js font optimization */
+
+@layer base {
+  * {
+    @apply box-border p-0 m-0;
+  }
+  
+  html {
+    @apply scroll-smooth;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+  }
+  
+  body {
+    @apply text-white;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+  }
+  
+  a {
+    @apply text-white no-underline;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-text-gradient bg-clip-text text-transparent font-normal;
+  }
+  
+  .yellow-text {
+    @apply text-portfolio-yellow;
+  }
+  
+  .justified {
+    @apply text-justify;
+    hyphens: auto;
+  }
+  
+  .contact-box {
+    @apply bg-portfolio-yellow text-portfolio-dark;
+  }
+  
+  .send-message {
+    @apply border-2 border-dotted border-blue-500 rounded-full px-5 py-2 w-80 text-white bg-button-gradient hover:bg-gradient-to-b hover:from-gray-800 hover:to-blue-600 transition-all duration-300;
+  }
+  
+  .contactinfo {
+    @apply border-2 border-dotted border-portfolio-yellow px-8 py-3 rounded-full;
+  }
+  
+  .submitbtn {
+    @apply border-2 border-dotted border-portfolio-yellow rounded-full;
+  }
+  
+  .timeline {
+    @apply border-l border-gray-300 relative list-none;
+  }
+  
+  .timeline-item {
+    @apply relative;
+  }
+  
+  .timeline-item::after {
+    @apply absolute block top-0 bg-portfolio-yellow -left-[38px] rounded-full h-3 w-3;
+    content: "";
+  }
+  
+  .hero {
+    @apply min-h-[600px] mt-24;
+  }
+  
+  .services {
+    @apply max-h-96;
+  }
+  
+  .formsection {
+    @apply bg-black;
+  }
+}
+
+@layer utilities {
+  .center-navlinks {
+    @apply lg:ml-44;
+  }
+  
+  .no-justify {
+    @apply md:text-left;
+  }
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .center-navlinks {
+    @apply ml-0 mt-5;
+  }
+  
+  .hero {
+    @apply mt-5;
+  }
+  
+  .no-justify {
+    @apply text-left;
+  }
+}
