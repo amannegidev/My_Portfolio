@@ -11,6 +11,7 @@ import toast from 'react-hot-toast'
 
 export default function EditBlog() {
   const params = useParams()
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [isLoadingBlog, setIsLoadingBlog] = useState(true)
   const [tagInput, setTagInput] = useState('')
