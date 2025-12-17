@@ -8,6 +8,9 @@ require('dotenv').config()
 
 const app = express()
 
+// Ensure Express respects X-Forwarded-* headers (needed for correct req.protocol on Render)
+app.set('trust proxy', 1)
+
 // Import routes
 const blogRoutes = require('./routes/blogs')
 const projectRoutes = require('./routes/projects')
