@@ -37,6 +37,9 @@
 @layer components {
   .gradient-text {
     @apply bg-text-gradient bg-clip-text text-transparent font-normal;
+    height: 1.2em;
+    /* line-height: 1.2em; */
+    display: inline-block;
   }
   
   .yellow-text {

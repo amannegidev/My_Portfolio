@@ -7,91 +7,6 @@ import Layout from '@/components/Layout'
 import { FaDownload, FaArrowRight, FaCalendar, FaClock, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import ContactSection from '@/components/ContactSection'
 
-// Component for syntax highlighting
-function CodeLine({ text }: { text: string }) {
-  if (!text) return <span className="text-white"></span>
-  
-  // Define match interface
-  interface Match {
-    start: number
-    end: number
-    text: string
-    className: string
-  }
-  
-  // Parse and highlight syntax while preserving spaces
-  const renderHighlightedCode = (code: string) => {
-    const parts: JSX.Element[] = []
-    let key = 0
-    
-    // Define patterns with their colors
-    const patterns = [
-      { regex: /\b(const|function|return|let|var)\b/g, className: 'text-purple-400' },
-      { regex: /\b(console)\b/g, className: 'text-cyan-400' },
-      { regex: /"[^"]*"/g, className: 'text-green-400' },
-      { regex: /'[^']*'/g, className: 'text-green-400' },
-      { regex: /`[^`]*`/g, className: 'text-green-400' },
-      { regex: /\/\/.*$/gm, className: 'text-gray-500' },
-      { regex: /\b(\w+)(?=\s*:)/g, className: 'text-cyan-400' }
-    ]
-    
-    // Find all matches
-    const matches: Match[] = []
-    patterns.forEach(pattern => {
-      let match: RegExpExecArray | null
-      while ((match = pattern.regex.exec(code)) !== null) {
-        matches.push({
-          start: match.index,
-          end: match.index + match[0].length,
-          text: match[0],
-          className: pattern.className
-        })
-      }
-    })
-    
-    // Sort matches by position
-    matches.sort((a, b) => a.start - b.start)
-    
-    // Remove overlapping matches (keep first one)
-    const filteredMatches: Match[] = []
-    let lastEnd = 0
-    for (const match of matches) {
-      if (match.start >= lastEnd) {
-        filteredMatches.push(match)
-        lastEnd = match.end
-      }
-    }
-    
-    // Build the result
-    let position = 0
-    for (const match of filteredMatches) {
-      // Add text before match
-      if (match.start > position) {
-        const beforeText = code.slice(position, match.start)
-        parts.push(<span key={key++} className="text-white">{beforeText}</span>)
-      }
-      
-      // Add highlighted match
-      parts.push(<span key={key++} className={match.className}>{match.text}</span>)
-      position = match.end
-    }
-    
-    // Add remaining text
-    if (position < code.length) {
-      const remainingText = code.slice(position)
-      parts.push(<span key={key++} className="text-white">{remainingText}</span>)
-    }
-    
-    return parts
-  }
-  
-  return (
-    <span className="whitespace-pre font-mono">
-      {renderHighlightedCode(text)}
-    </span>
-  )
-}
-
 interface Blog {
   _id: string
   title: string
@@ -118,60 +33,10 @@ export default function Home() {
   const [featuredProjects, setFeaturedProjects] = useState<Project[]>([])
   const [featuredBlogs, setFeaturedBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
-  const [displayedLines, setDisplayedLines] = useState(0)
-  const [currentLineText, setCurrentLineText] = useState('')
-  const [currentCharIndex, setCurrentCharIndex] = useState(0)
-
-  // Code lines for typewriter effect
-  const codeLines = [
-    'const createDeveloper = () => {',
-    '  const developer = {',
-    '    name: "Aman Negi",',
-    '    role: "Full Stack Developer",',
-    '    passion: "Building amazing web experiences"',
-    '  };',
-    '',
-    '  const sayHello = () => {',
-    '    return `Hello World! I\'m ${developer.name}`;',
-    '  };',
-    '',
-    '  return { ...developer, sayHello };',
-    '};',
-    '',
-    '// Create developer instance',
-    'const dev = createDeveloper();',
-    'console.log(dev.sayHello());',
-    '// Output: Hello World! I\'m Aman Negi'
-  ]
 
   useEffect(() => {
     fetchFeaturedContent()
   }, [])
-
-  // Typewriter effect
-  useEffect(() => {
-    if (displayedLines >= codeLines.length) return
-
-    const currentLine = codeLines[displayedLines]
-    
-    if (currentCharIndex < currentLine.length) {
-      const timer = setTimeout(() => {
-        setCurrentLineText(prev => prev + currentLine[currentCharIndex])
-        setCurrentCharIndex(prev => prev + 1)
-      }, 50) // Typing speed
-      
-      return () => clearTimeout(timer)
-    } else {
-      // Line complete, move to next line after a pause
-      const timer = setTimeout(() => {
-        setDisplayedLines(prev => prev + 1)
-        setCurrentLineText('')
-        setCurrentCharIndex(0)
-      }, 300) // Pause between lines
-      
-      return () => clearTimeout(timer)
-    }
-  }, [displayedLines, currentCharIndex, codeLines])
 
   const fetchFeaturedContent = async () => {
     try {
@@ -225,43 +90,16 @@ export default function Home() {
                     <div className="text-gray-400 text-xs font-mono">developer.js</div>
                   </div>
                   
-                  {/* Background Image with Overlay */}
-                  <div className="absolute inset-0 top-10">
+                  {/* Image Content */}
+                  <div className="relative w-full h-full">
                     <Image
                       src="/images/hero/hero-image.jpg"
                       alt="Aman Negi - Full Stack Developer"
                       fill
-                      className="object-cover opacity-20"
+                      className="object-cover"
                       priority
                     />
-                    {/* Dark overlay for better code visibility */}
-                    <div className="absolute "></div>
                   </div>
-                  
-                  {/* Code Content with Typewriter Effect */}
-                  <div className="relative z-10 p-4 font-mono text-sm leading-relaxed h-full overflow-hidden">
-                    <div className="space-y-1">
-                      {/* Render completed lines */}
-                      {codeLines.slice(0, displayedLines).map((line, index) => (
-                        <div key={index} className="flex">
-                          <span className="text-gray-500 w-8 text-right mr-4">{index + 1}</span>
-                          <CodeLine text={line} />
-                        </div>
-                      ))}
-                      
-                      {/* Render current typing line */}
-                      {displayedLines < codeLines.length && (
-                        <div className="flex">
-                          <span className="text-gray-500 w-8 text-right mr-4">{displayedLines + 1}</span>
-                          <CodeLine text={currentLineText} />
-                          <span className="text-white animate-pulse ml-1">|</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Subtle glow effect */}
-                  <div className="absolute inset-0 rounded-lg border border-green-500/20 shadow-lg shadow-green-500/10"></div>
                 </div>
               </div>
             </div>

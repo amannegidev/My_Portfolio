@@ -1,40 +1,8 @@
 import Layout from '@/components/Layout'
-import Link from 'next/link'
+import Image from 'next/image'
 import ContactSection from '@/components/ContactSection'
 
 export default function About() {
-  const timelineItems = [
-    {
-      title: "Completed High School",
-      year: "2020",
-      description: "Finished my high school education in humanities with economics—never knew I'd one day become a web developer!"
-    },
-    {
-      title: "Started Bachelor of Computer Applications (BCA)",
-      year: "2021", 
-      description: "Enrolled at Maharshi Dayanand University and began my programming journey, diving into coding, databases, and web development."
-    },
-    {
-      title: "Graduated with a BCA Degree",
-      year: "2025",
-      description: "Successfully completed my degree, gaining expertise in programming, web development technologies, and frontend technologies like HTML, CSS, JavaScript, and Bootstrap. During this time, I also built my first website, marking the beginning of my journey into the world of web development."
-    },
-    {
-      title: "Completed Full-Stack Development",
-      year: "2025",
-      description: "Expanding my skills in web development and exploring new technologies like Node.js, Express.js, MySQL, MongoDB, and React. Currently working on MERN projects, developing static websites with backend databases to gain hands-on experience in building scalable applications."
-    },
-    {
-      title: "Intern",
-      year: "2025",
-      description: "Gained practical experience in web development during my internship at VSIT, where I worked on real-world projects, honed my technical skills, and collaborated in a professional environment."
-    },
-    {
-      title: "to be continue...",
-      year: "",
-      description: ""
-    }
-  ]
 
   const services = [
     {
@@ -53,35 +21,51 @@ export default function About() {
 
   return (
     <Layout>
-      {/* About Section */}
+      {/* Hero Section */}
       <section className="pt-12 lg:pt-20">
         <div className="container mx-auto px-4 py-10">
-          <div className="max-w-6xl">
-            <h1 className="text-7xl  gradient-text  mb-8">about me</h1>
-            <p className="text-xl lg:text-xl text-gray-300 leading-relaxed justified no-justify">
-              I'm aman negi, a fullstack developer from delhi, driven by the passion to build scalable, high-performance web applications. With expertise in the MERN stack, I craft seamless digital experiences that blend functionality with great user experience. I believe in writing clean, efficient code that transforms ideas into reality—whether it's designing intuitive frontends or optimizing backend performance. Constantly learning and evolving, I thrive on solving challenges and building tech that makes an impact.
-            </p>
-          </div>
-        </div>
-      </section>
+          <h1 className="text-7xl gradient-text mb-16 text-center lg:text-left">About</h1>
+          
+          {/* About Content with Image */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+         
 
-      {/* Timeline Section */}
-      <section className="py-12 lg:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl">
-            <ul className="timeline pl-8">
-              {timelineItems.map((item, index) => (
-                <li key={index} className="timeline-item mb-8">
-                  <h3 className="text-xl font-bold yellow-text mb-2">{item.title}</h3>
-                  {item.year && <p className="text-gray-400 font-bold mb-3">{item.year}</p>}
-                  {item.description && (
-                    <p className="text-gray-300 justified no-justify leading-relaxed">
-                      {item.description}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
+            {/* Content Side */}
+            <div className="w-full lg:w-7/12">
+              <div className="space-y-6">
+                <div>
+                
+                  <p className="text-lg lg:text-xl text-gray-300 leading-relaxed">
+                   Hi, I'm Aman Negi A fullstack developer from Delhi, driven by the passion to build scalable, high-performance web applications.
+                  </p>
+                </div>
+
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  With expertise in the MERN stack, I craft seamless digital experiences that blend functionality with great user experience. I believe in writing clean, efficient code that transforms ideas into reality—whether it's designing intuitive frontends or optimizing backend performance.
+                </p>
+
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Constantly learning and evolving, I thrive on solving challenges and building tech that makes an impact. My journey in web development is fueled by curiosity and a commitment to excellence.
+                </p>
+
+            
+              </div>
+            </div>
+
+               {/* Image Side */}
+            <div className="w-full lg:w-5/12">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-gray-700 shadow-2xl">
+                  <Image
+                    src="https://studio.code.org/shared/images/courses/logo_tall_oceans.jpg"
+                    alt="Aman Negi - Full Stack Developer"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -57,7 +57,7 @@ export default function Contact() {
       <section className="pt-12 lg:pt-20">
         <div className="container mx-auto px-4 py-10">
           <div className="max-w-6xl mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-8">
+            <h1 className="text-4xl lg:text-5xl  mb-8">
               Let's connect and build something great!
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed justified">
@@ -67,37 +67,10 @@ export default function Contact() {
             </p>
           </div>
         </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section className="formsection py-12">
-        <div className="container mx-auto px-4">
-          {/* Contact Info */}
-          <div className="flex flex-wrap gap-6 items-center mb-12">
-            <div className="contactinfo">
-              <FaPhone className="inline mr-2" />
-              Number: 8745063206
-            </div>
-            
-            <a href="mailto:negi10756@gmail.com" className="contactinfo hover:border-portfolio-yellow transition-colors duration-300">
-              <FaEnvelope className="inline mr-2" />
-              Email: negi10756@gmail.com
-            </a>
-            
-            <a 
-              href="https://wa.me/918745063206?text=Hey%20Aman!%20I%20want%20to%20discuss%20a%20project." 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="contactinfo hover:border-portfolio-yellow transition-colors duration-300"
-              aria-label="Chat with me on WhatsApp"
-            >
-              <FaWhatsapp className="inline mr-2" />
-              Chat with Me
-            </a>
-          </div>
-
+        
+         <div className="container px-7 mx-auto bg-black py-14 rounded">
           {/* Contact Form */}
-          <div className="max-w-4xl">
+          <div className="max-w-6xl ">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -111,7 +84,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Johnny"
-                    className="w-full py-3 px-4 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-portfolio-yellow transition-colors duration-300"
+                    className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
                     required
                   />
                 </div>
@@ -127,7 +100,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email"
-                    className="w-full py-3 px-4 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-portfolio-yellow transition-colors duration-300"
+                    className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
                     required
                   />
                 </div>
@@ -144,7 +117,7 @@ export default function Contact() {
                   onChange={handleChange}
                   rows={6}
                   placeholder="Write your message here..."
-                  className="w-full py-3 px-4 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-portfolio-yellow transition-colors duration-300 resize-vertical"
+                  className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 resize-none"
                   required
                 />
               </div>
@@ -153,7 +126,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="submitbtn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                  className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -162,8 +135,10 @@ export default function Contact() {
                     </>
                   ) : (
                     <>
-                      Send Message
-                      <FaPaperPlane className="text-sm" />
+                      send message
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                      </svg>
                     </>
                   )}
                 </button>
@@ -172,6 +147,9 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+   
+     
     </Layout>
   )
 }

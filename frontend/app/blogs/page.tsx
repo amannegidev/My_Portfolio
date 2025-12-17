@@ -30,7 +30,7 @@ export default function Blogs() {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/blogs`)
         const data = await response.json()
-        
+
         if (data.success) {
           setBlogs(data.data || [])
         } else {
@@ -63,15 +63,15 @@ export default function Blogs() {
         <div className="container mx-auto px-4">
           {/* Header */}
           <section className="pt-12 lg:pt-20">
-        <div className="container mx-auto px-4 py-10">
-          <div className="max-w-6xl mb-12">
-            <h1 className="  gradient-text text-7xl  mb-8 ">Blogs</h1>
-            <p className="text-xl text-gray-300 leading-relaxed justified no-justify">
-            Thoughts, tutorials, and insights about web development, technology, and programming.
-            </p>
-          </div>
-        </div>
-      </section>
+            <div className="container mx-auto  py-10">
+              <div className="max-w-6xl mb-12">
+                <h1 className="  gradient-text text-7xl mb-8 ">Blogs</h1>
+                <p className="text-xl text-gray-300 leading-relaxed justified no-justify">
+                  Thoughts, tutorials, and insights about web development, technology, and programming.
+                </p>
+              </div>
+            </div>
+          </section>
 
           {/* Blog Posts */}
           {blogs.length === 0 ? (
@@ -84,17 +84,17 @@ export default function Blogs() {
               {blogs.map((blog) => (
                 <article key={blog._id} className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
                   {/* Featured Image */}
-                  { <Link
-                      href={`/blogs/${blog.slug}`}
-                      className=""
-                    >
-                  <div className="h-48 bg-gray-700 overflow-hidden">
-                    <img
-                      src={blog.featuredImage}
-                      alt={blog.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  {<Link
+                    href={`/blogs/${blog.slug}`}
+                    className=""
+                  >
+                    <div className="h-48 bg-gray-700 overflow-hidden">
+                      <img
+                        src={blog.featuredImage}
+                        alt={blog.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </Link>}
 
                   {/* Content */}
@@ -156,7 +156,7 @@ export default function Blogs() {
       </div>
 
       {/* Contact Section */}
-      <ContactSection 
+      <ContactSection
         title="Have a Story to Share?"
         description="Whether you want to collaborate on content, have questions about my articles, or just want to connect - I'd love to hear from you!"
         buttonText="Get In Touch"
