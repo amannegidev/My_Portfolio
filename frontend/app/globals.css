@@ -21,12 +21,12 @@
   
   html {
     @apply scroll-smooth;
-    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    font-family: 'Stack Sans Headline', system-ui, sans-serif;
   }
   
   body {
     @apply text-white;
-    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    font-family: 'Stack Sans Headline', system-ui, sans-serif;
   }
   
   a {
@@ -35,6 +35,10 @@
 }
 
 @layer components {
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 2xl:px-24;
+  }
+
   .gradient-text {
     @apply bg-text-gradient bg-clip-text text-transparent font-normal;
     height: 1.2em;

@@ -10,23 +10,23 @@ interface ContactSectionProps {
 
 export default function ContactSection({
   title = "Are You Ready to kickstart your project?",
-  description = "Turn your ideas into reality with expert development and seamless solutions. Let's build something amazing together!",
+  description = "Turn your ideas into reality with expert development. Let's build something amazing together!",
   buttonText = "Send Me Message",
   buttonLink = "/contact"
 }: ContactSectionProps) {
   return (
-    <section className="py-12 lg:py-20">
-      <div className="container mx-auto px-4 text-center">
-        <div className="contact-box rounded-lg p-12 bg-yellow border border-gray-700">
-          <h2 className="text-3xl lg:text-6xl  mb-6">
+    <section className="py-6 lg:py-20">
+      <div className="container mx-auto px-4 text-center ">
+        <div className="contact-box rounded-lg bg-yellow py-12 px-4 border border-gray-700">
+          <h2 className="text-3xl lg:text-5xl px-2 mb-6">
             {title}
           </h2>
-          <p className="text-lg mb-8 mx-auto">
+          <p className="text-lg mb-8 mx-auto px-2 display-none md-display-block">
             {description}
           </p>
           <Link 
             href={buttonLink} 
-            className="inline-flex items-center gap-3 text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-3 text-gray-900 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
           >
             {buttonText} <FaArrowRight />
           </Link>

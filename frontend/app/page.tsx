@@ -103,8 +103,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-7/12 py-12 lg:py-0">
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl mb-6 leading-loose">
+            <div className="w-full lg:w-7/12 py-4 md-py-12 lg:py-0">
+              <h1 className="text-4xl lg:text-4xl xl:text-4xl mb-6 leading-">
                 I'm Aman Negi, a fullstack developer, Indie maker, and tech explorer living on the internet.
               </h1>
               <p className="text-xl mb-8 text-gray-300">

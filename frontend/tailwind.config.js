@@ -6,6 +6,19 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '1.5rem',
+        lg: '3rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
+    fontFamily: {
+      sans: ['"Stack Sans Headline"', 'sans-serif'],
+    },
     extend: {
       colors: {
         // Custom colors matching your original design
@@ -20,7 +33,7 @@ module.exports = {
         'button-gradient': 'linear-gradient(to bottom, rgb(12, 11, 11), rgb(24, 13, 181))',
       },
       fontFamily: {
-        'dm-sans': ['DM Sans', 'sans-serif'],
+        'stack-headline': ['"Stack Sans Headline"', 'sans-serif'],
         'poppins': ['Poppins', 'sans-serif'],
         'ubuntu': ['Ubuntu', 'sans-serif'],
       },
