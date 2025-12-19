@@ -17,8 +17,8 @@ export default function ContactSection({
   return (
     <section className="pt-6 lg:py-20">
       <div className="container mx-auto px-4 text-center ">
-        <div className="contact-box rounded-lg bg-yellow py-12 px-4 border border-gray-700">
-          <h2 className="text-xl lg:text-5xl px-2 mb-6 leading-relaxed">
+        <div className="contact-box rounded-lg bg-black py-12 px-4 border border-portfolio-yellow  text-white ">
+          <h2 className="text-xl lg:text-5xl px-2 mb-6 text-white leading-relaxed">
             {title}
           </h2>
           {/* <p className="text-lg mb-8 mx-auto px-2 display-none md-display-block">
@@ -26,7 +26,7 @@ export default function ContactSection({
           </p> */}
           <Link 
             href={buttonLink} 
-            className="inline-flex items-center gap-3 text-white px-8 bg-black ring-2 ring-white py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-3 text-white px-8  ring-white py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
           >
             {buttonText} <FaArrowRight />
           </Link>
