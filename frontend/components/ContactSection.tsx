@@ -17,7 +17,7 @@ export default function ContactSection({
   return (
     <section className="pt-6 lg:py-20">
       <div className="container mx-auto px-4 text-center ">
-        <div className="contact-box rounded-lg bg-black py-12 px-4 border border-portfolio-yellow  text-white ">
+        <div className="contact-box rounded-lg bg-black py-12 px-4 text-white ">
           <h2 className="text-xl lg:text-5xl px-2 mb-6 text-white leading-relaxed">
             {title}
           </h2>
