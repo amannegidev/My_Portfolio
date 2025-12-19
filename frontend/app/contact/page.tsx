@@ -54,13 +54,13 @@ export default function Contact() {
       <Toaster position="top-right" />
       
       {/* Contact Header */}
-      <section className="pt-12 lg:pt-20">
-        <div className="container mx-auto px-4 py-10">
+      <section className="pt-2 lg:pt-20">
+        <div className="container mx-auto px-4 pt-10 pb-6">
           <div className="max-w-6xl mb-12">
-            <h1 className="text-4xl lg:text-5xl  mb-8">
+            <h1 className="text-3xl lg:text-5xl  mb-8">
               Let's connect and build something great!
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed justified">
+            <p className="text-sm md:text-xl text-gray-300 leading-relaxed ">
               Whether you have a project idea, need a developer for collaboration, or just want to discuss
               technology, feel free to reach out! I'm always open to new opportunities, freelance work, or
               just a tech conversation. Drop me a message, and let's create something amazing together.
@@ -68,13 +68,13 @@ export default function Contact() {
           </div>
         </div>
         
-         <div className="container px-7 mx-auto bg-black py-14 rounded">
+         <div className="container px-7 mx-auto bg-black py-8 rounded">
           {/* Contact Form */}
           <div className="max-w-6xl ">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block mb-2 text-xl yellow-text">
+                  <label htmlFor="name" className="block mb-2 text-sm yellow-text">
                     Name
                   </label>
                   <input
@@ -83,14 +83,14 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Johnny"
-                    className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+                    // placeholder="Johnny"
+                    className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300  placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block mb-2 text-xl yellow-text">
+                  <label htmlFor="email" className="block mb-2 text-sm yellow-text">
                     Email Address
                   </label>
                   <input
@@ -99,15 +99,15 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Enter your email"
-                    className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+                    // placeholder="Enter your email"
+                    className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="message" className="block mb-2 text-xl yellow-text">
+                <label htmlFor="message" className="block mb-2 text-sm yellow-text">
                   Message
                 </label>
                 <textarea
@@ -117,7 +117,7 @@ export default function Contact() {
                   onChange={handleChange}
                   rows={6}
                   placeholder="Write your message here..."
-                  className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 resize-none"
+                  className="w-full py-3 px-4 bg-white text-gray-900 border border-gray-300  placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 resize-none"
                   required
                 />
               </div>
@@ -126,7 +126,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                  className="px-8 py-3 bg-transparent border-2 border-white text-white  hover:bg-white hover:text-gray-900 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -136,9 +136,9 @@ export default function Contact() {
                   ) : (
                     <>
                       send message
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-                      </svg>
+                      </svg> */}
                     </>
                   )}
                 </button>
