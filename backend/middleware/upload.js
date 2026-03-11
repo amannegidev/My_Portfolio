@@ -137,7 +137,12 @@ const uploadMultiple = (fieldName, maxCount = 10) => {
 
 // Helper function to get file URL
 const getFileUrl = (req, filename, type = 'images') => {
-  const baseUrl = `${req.protocol}://${req.get('host')}`
+  // Use backendUrl from request if available (set by server middleware)
+  // Otherwise construct it from request
+  let baseUrl = req.backendUrl
+  if (!baseUrl) {
+    baseUrl = `${req.protocol}://${req.get('host')}`
+  }
   return `${baseUrl}/uploads/${type}/${filename}`
 }
 

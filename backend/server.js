@@ -11,6 +11,29 @@ const app = express()
 // Ensure Express respects X-Forwarded-* headers (needed for correct req.protocol on Render)
 app.set('trust proxy', 1)
 
+// Helper function to get correct backend URL for image serving
+const getBackendUrl = (req) => {
+  // In production on Render, use the FRONTEND_URL domain without /api
+  if (process.env.NODE_ENV === 'production') {
+    // Extract base URL from FRONTEND_URL or construct from headers
+    const frontendUrl = process.env.FRONTEND_URL
+    if (frontendUrl) {
+      // Replace frontend domain with backend domain if they're different
+      // Or use X-Forwarded-Proto and X-Forwarded-Host headers
+      const proto = req.get('X-Forwarded-Proto') || req.protocol || 'https'
+      const host = req.get('X-Forwarded-Host') || req.get('host')
+      return `${proto}://${host}`
+    }
+  }
+  return `${req.protocol}://${req.get('host')}`
+}
+
+// Store backend URL in req for use in routes
+app.use((req, res, next) => {
+  req.backendUrl = getBackendUrl(req)
+  next()
+})
+
 // Import routes
 const blogRoutes = require('./routes/blogs')
 const projectRoutes = require('./routes/projects')
@@ -41,10 +64,12 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 // Static file serving for uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+  maxAge: '7d', // Cache images for 7 days
   setHeaders: (res, path) => {
     res.set('Access-Control-Allow-Origin', '*')
-    res.set('Access-Control-Allow-Methods', 'GET')
+    res.set('Access-Control-Allow-Methods', 'GET, OPTIONS')
     res.set('Access-Control-Allow-Headers', '*')
+    res.set('Cache-Control', 'public, max-age=604800') // 7 days
   }
 }))
 
