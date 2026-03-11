@@ -117,6 +117,31 @@ router.get('/admin/all', auth, async (req, res) => {
   }
 })
 
+// Get single blog by ID (admin only)
+router.get('/admin/:id', auth, async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id)
+
+    if (!blog) {
+      return res.status(404).json({
+        success: false,
+        message: 'Blog not found'
+      })
+    }
+
+    res.json({
+      success: true,
+      data: blog
+    })
+  } catch (error) {
+    console.error('Error fetching blog:', error)
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching blog'
+    })
+  }
+})
+
 // Create new blog (admin only)
 router.post('/', [
   auth,
@@ -124,7 +149,7 @@ router.post('/', [
   body('slug').trim().isLength({ min: 1 }).withMessage('Slug is required'),
   body('excerpt').trim().isLength({ min: 1, max: 500 }).withMessage('Excerpt is required and must be less than 500 characters'),
   body('content').trim().isLength({ min: 1 }).withMessage('Content is required'),
-  body('featuredImage').isURL().withMessage('Featured image must be a valid URL'),
+  body('featuredImage').isLength({ min: 1 }).withMessage('Featured image is required'),
   body('readTime').isInt({ min: 1 }).withMessage('Read time must be a positive integer')
 ], async (req, res) => {
   try {
@@ -167,7 +192,7 @@ router.put('/:id', [
   body('title').optional().trim().isLength({ min: 1, max: 200 }),
   body('excerpt').optional().trim().isLength({ min: 1, max: 500 }),
   body('content').optional().trim().isLength({ min: 1 }),
-  body('featuredImage').optional().isURL(),
+  body('featuredImage').optional().isLength({ min: 1 }).withMessage('Featured image cannot be empty'),
   body('readTime').optional().isInt({ min: 1 })
 ], async (req, res) => {
   try {

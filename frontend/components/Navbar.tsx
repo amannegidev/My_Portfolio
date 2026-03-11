@@ -1,116 +1,115 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { FaHome } from 'react-icons/fa'
+
+const navLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blogs', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+]
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/blogs', label: 'Blog' },
-    // { href: '/contact', label: 'Contact' },
-  ]
-
-  const socialLinks = [
-    { href: 'https://www.facebook.com/share/1E7zgjuH2W/', icon: FaFacebook },
-    { href: 'https://www.instagram.com/amannnegifr?igsh=MTRpcGdkZDk3MWxhdg==', icon: FaInstagram },
-    { href: 'https://www.linkedin.com/in/amannegidev', icon: FaLinkedin },
-    { href: 'https://github.com/amannegidev', icon: FaGithub },
-  ]
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <nav className="mt-3">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          {/* Brand */}
-          <Link href="/" className="text-xl font-bold text-white">
-            Myportfolio
+    <>
+      {/* ── Desktop Navbar (hidden on mobile entirely) ───────── */}
+      <nav
+        className={`hidden lg:block sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-gray-950/90 backdrop-blur-md border-b border-gray-800/60 shadow-lg shadow-black/20'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
+          <div className="flex items-center justify-start h-16">
+            {/* Brand */}
+            <Link
+              href="/"
+              className="text-white font-bold text-lg tracking-tight hover:text-yellow-400 transition-colors duration-200"
+            >
+              Aman<span className="text-yellow-400">.</span>
+            </Link>
+
+            {/* Nav Links - Pushed to right */}
+            <ul className="flex items-center gap-8 ml-auto">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className={`relative text-sm font-medium uppercase tracking-widest transition-colors duration-200 group ${
+                        isActive ? 'text-yellow-400' : 'text-gray-400 hover:text-white'
+                      }`}
+                    >
+                      {link.label}
+                      <span
+                        className={`absolute -bottom-1 left-0 h-px bg-yellow-400 transition-all duration-300 ${
+                          isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                      />
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* ── Mobile Floating Navbar ───────────────────────────── */}
+      {/* No top bar at all — only this floating pill exists on mobile */}
+      <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <nav className="flex items-center gap-1 px-2 py-2 rounded-xl bg-gray-950 border border-yellow-500/40 ">
+
+          {/* Home icon */}
+          <Link
+            href="/"
+            aria-label="Home"
+            className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200 ${
+              pathname === '/'
+                ? 'bg-yellow-400 text-gray-950 '
+                : 'text-yellow-400 hover:bg-yellow-400/15 hover:text-yellow-300'
+            }`}
+          >
+            <FaHome size={15} />
           </Link>
 
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden text-white focus:outline-none"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle navigation"
-          >
-            <div className="w-6 h-6 flex flex-col justify-center items-center">
-              <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
-              <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-              <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
-            </div>
-          </button>
+          {/* Divider */}
+          <span className="w-px h-5 bg-yellow-500/25 mx-0.5" />
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-center flex-1">
-            <ul className="flex gap-8 text-uppercase center-navlinks">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link 
-                    href={link.href} 
-                    className="text-white hover:text-portfolio-yellow transition-colors duration-300 uppercase tracking-wide"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social Media Links - Desktop */}
-          <div className="hidden lg:flex gap-6">
-            {socialLinks.map((social, index) => (
+          {/* Text links */}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href
+            return (
               <Link
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-portfolio-yellow transition-colors duration-300"
+                key={link.href}
+                href={link.href}
+                className={`px-3.5 py-2 rounded text-[11px] font-bold uppercase tracking-wider transition-all duration-200 ${
+                  isActive
+                    ? 'bg-yellow-400 text-gray-950 '
+                    : 'text-yellow-300 hover:bg-yellow-400/15 hover:text-yellow-400'
+                }`}
               >
-                <social.icon size={20} />
+                {link.label}
               </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-          <div className="pt-4 pb-2">
-            <ul className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link 
-                    href={link.href} 
-                    className="text-white hover:text-portfolio-yellow transition-colors duration-300 uppercase tracking-wide block py-2"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            
-            {/* Social Media Links - Mobile */}
-            <div className="flex gap-6 mt-4 pt-4 border-t border-gray-700">
-              {socialLinks.map((social, index) => (
-                <Link
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-portfolio-yellow transition-colors duration-300"
-                >
-                  <social.icon size={20} />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+            )
+          })}
+        </nav>
       </div>
-    </nav>
+    </>
   )
 }
 

@@ -10,6 +10,7 @@ interface FileUploadProps {
   onUploadComplete: (urls: string[]) => void
   existingFiles?: string[]
   maxFiles?: number
+  minFiles?: number
   className?: string
 }
 
@@ -26,6 +27,7 @@ export default function FileUpload({
   onUploadComplete, 
   existingFiles = [], 
   maxFiles = 5,
+  minFiles = 0,
   className = '' 
 }: FileUploadProps) {
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])

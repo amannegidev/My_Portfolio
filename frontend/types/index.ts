@@ -25,7 +25,6 @@ export interface Project {
   description: string
   technologies: string[]
   liveUrl?: string
-  githubUrl?: string
   images: string[]
   featured: boolean
   createdAt: string

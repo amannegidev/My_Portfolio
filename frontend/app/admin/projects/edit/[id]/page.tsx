@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import AdminLayout from '@/components/AdminLayout'
 import { api } from '@/lib/api'
 import { Project } from '@/types'
-import { FaSave, FaArrowLeft, FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { FaSave, FaArrowLeft, FaExternalLinkAlt } from 'react-icons/fa'
 import FileUpload from '@/components/FileUpload'
 import toast from 'react-hot-toast'
 
@@ -230,7 +230,7 @@ export default function EditProject() {
             </div>
 
             {/* URLs */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div>
                 <label htmlFor="liveUrl" className="block text-sm font-medium text-gray-700 mb-2">
                   <FaExternalLinkAlt className="inline mr-2" />
@@ -246,22 +246,6 @@ export default function EditProject() {
                   placeholder="https://your-project.com"
                 />
               </div>
-
-              <div>
-                <label htmlFor="githubUrl" className="block text-sm font-medium text-gray-700 mb-2">
-                  <FaGithub className="inline mr-2" />
-                  GitHub Repository
-                </label>
-                <input
-                  type="url"
-                  id="githubUrl"
-                  name="githubUrl"
-                  value={formData.githubUrl}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900 bg-white"
-                  placeholder="https://github.com/username/repo"
-                />
-              </div>
             </div>
 
             {/* File Upload */}
@@ -273,7 +257,8 @@ export default function EditProject() {
                 type="multiple"
                 onUploadComplete={handleImageUpload}
                 existingFiles={formData.images}
-                maxFiles={5}
+                maxFiles={4}
+                minFiles={1}
               />
             </div>
 

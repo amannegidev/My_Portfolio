@@ -77,6 +77,10 @@ class ApiClient {
     return this.request(`/blogs/${slug}`)
   }
 
+  async getBlog(id: string) {
+    return this.request(`/blogs/admin/${id}`)
+  }
+
   async getProjects(params?: { page?: number; limit?: number; category?: string; featured?: boolean }) {
     const searchParams = new URLSearchParams()
     if (params?.page) searchParams.append('page', params.page.toString())

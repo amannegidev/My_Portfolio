@@ -50,13 +50,23 @@ export default function EditBlog() {
   const fetchBlog = async (id: string) => {
     try {
       setIsLoadingBlog(true)
-      const response = await api.getBlogs({ limit: 1 }) // We'll need to get by ID
-      // For now, we'll use a workaround since we don't have getBlogById
-      // In a real implementation, you'd add getBlogById to the API client
+      const response = await api.getBlog(id)
       
-      // Temporary: redirect to create new blog
-      toast.error('Blog editing not yet implemented. Redirecting to create new blog.')
-      router.push('/admin/blogs/new')
+      if (response.success && response.data) {
+        const blogData = response.data
+        setBlog(blogData)
+        setFormData({
+          title: blogData.title || '',
+          slug: blogData.slug || '',
+          excerpt: blogData.excerpt || '',
+          content: blogData.content || '',
+          featuredImage: blogData.featuredImage || '',
+          tags: blogData.tags || [],
+          isPublished: blogData.isPublished || false,
+          featured: blogData.featured || false,
+          readTime: blogData.readTime || 5
+        })
+      }
     } catch (error) {
       console.error('Error fetching blog:', error)
       toast.error('Failed to load blog')

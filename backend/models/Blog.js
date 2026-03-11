@@ -69,7 +69,6 @@ const blogSchema = new mongoose.Schema({
 // Index for better search performance
 blogSchema.index({ title: 'text', content: 'text', tags: 'text' })
 blogSchema.index({ isPublished: 1, publishedAt: -1 })
-blogSchema.index({ slug: 1 })
 
 // Virtual for formatted publish date
 blogSchema.virtual('formattedPublishDate').get(function() {
